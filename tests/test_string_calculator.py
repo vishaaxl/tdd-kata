@@ -59,3 +59,48 @@ class TestStringCalculator(unittest.TestCase):
         """
         self.assertEqual(self.calculator.add("//;\n1;2;3"), 6)
     
+    def test_add_negative_numbers(self):
+        """
+        Test case: Adding numbers with negative numbers should raise an exception.
+        Input: "-1,2,3"
+        Expected Output: "Negative numbers are not allowed: -1"
+        """
+        with self.assertRaises(ValueError) as e:
+            self.calculator.add("-1,2,-3")
+        self.assertEqual(str(e.exception), "negative numbers are not allowed: -1, -3")
+
+    def test_get_called_counts(self):
+        """
+        Test case: Calling get_called_counts method should return the number of times add method was called.
+        Input: Multiple add calls
+        Expected Output: 2 (if add() was called 2 times)
+        """
+        self.calculator.add("1,2,3")
+        self.calculator.add("1,2")
+        self.assertEqual(self.calculator.get_called_count(), 2)
+
+    def test_add_numbers_greater_than_1000(self):
+        """
+        Test case: Numbers greater than 1000 should be ignored when calculating the sum.
+        Input: "1,1001,2,3"
+        Expected Output: 6
+        """
+        self.assertEqual(self.calculator.add("1,1001,2,3"), 6)
+
+    def test_add_numbers_with_custom_delimiter_long_length(self):
+        """
+        Test case: Adding numbers separated by a custom delimiter with a long length should return their sum.
+        Input: "//[***]\n1***2***3"
+        Expected Output: 6
+        """
+        self.assertEqual(self.calculator.add("//[***]\n1***2***3"), 6)
+
+    def test_add_numbers_with_multiple_delimiters(self):
+        """
+        Test case: Multiple delimiters of any length can be used.
+        Input: "//[***][%%]\n1***2%%3"
+        Expected Output: 6
+        """
+        self.assertEqual(self.calculator.add("//[***][%%]\n1***2%%3"), 6)
+
+        
