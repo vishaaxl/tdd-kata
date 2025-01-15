@@ -2,6 +2,9 @@ class StringCalculator:
     def add(self, numbers:str):
         if not numbers:
             return 0
+        
+        numbers = numbers.replace("\n", ",")
+
         '''
         Split the string by commas, convert each value to an integer, 
         and sum them up

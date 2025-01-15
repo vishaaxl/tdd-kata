@@ -28,4 +28,26 @@ class TestStringCalculator(unittest.TestCase):
         self.assertEqual(self.calculator.add("1"), 1)
 
     def test_add_two_numbers(self):
+        """
+        Test case: Adding two numbers should return their sum.
+        Input: "1,2"
+        Expected Output: 3
+        """
         self.assertEqual(self.calculator.add("1,2"),3)
+
+    def test_add_multiple_numbers(self):
+        """
+        Test case: Adding multiple numbers should return their sum.
+        Input: "1,2,3,4,5"
+        Expected Output: 15
+        """
+        self.assertEqual(self.calculator.add("1,2,3,4,5"), 15)
+
+    def test_add_numbers_with_newlines(self):
+        """
+        Test case: Adding numbers separated by newlines should return their sum.
+        Input: "1\n2\n3"
+        Expected Output: 6
+        """
+        self.assertEqual(self.calculator.add("1\n2\n3"), 6)
+    
