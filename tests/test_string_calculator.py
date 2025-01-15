@@ -51,3 +51,11 @@ class TestStringCalculator(unittest.TestCase):
         """
         self.assertEqual(self.calculator.add("1\n2\n3"), 6)
     
+    def test_add_numbers_with_custom_delimiter(self):
+        """
+        Test case: Adding numbers separated by a custom delimiter should return their sum.
+        Input: "//;\n1;2;3"
+        Expected Output: 6
+        """
+        self.assertEqual(self.calculator.add("//;\n1;2;3"), 6)
+    
